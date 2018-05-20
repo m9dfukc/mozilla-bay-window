@@ -27,8 +27,6 @@ services:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: ${DB_USER}
       WORDPRESS_DB_PASSWORD: ${DB_PASS}
-      API_USER: ${API_USER}
-      API_PASSWORD: ${API_PASS}
 
 volumes:
   dbdata:
