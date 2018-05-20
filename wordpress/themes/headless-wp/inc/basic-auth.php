@@ -42,7 +42,7 @@ function json_basic_auth_handler( $user ) {
 
 	return $user->ID;
 }
-add_filter( 'determine_current_user', 'json_basic_auth_handler', 20 );
+// add_filter( 'determine_current_user', 'json_basic_auth_handler', 20 );
 
 function json_basic_auth_error( $error ) {
 	if ( ! empty( $result ) ) {
@@ -53,4 +53,4 @@ function json_basic_auth_error( $error ) {
     }
     return $result;
 }
-add_filter( 'rest_authentication_errors', 'json_basic_auth_error' );
+// add_filter( 'rest_authentication_errors', 'json_basic_auth_error' );

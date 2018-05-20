@@ -45,12 +45,13 @@ function my_admin_style() {
 	    	display: block;
 	    }
 			.acf-postbox #message {
-				width: 460px;
+				width: 453px;
 			}
 			.acf-postbox #message textarea{
 				font-size: 160px;
-				line-height: 1em;
+				line-height: 105px;
 				font-family: BickertonDisplay;
+				word-break: break-all;
 			}
 	    </style>
   <?php
@@ -65,16 +66,6 @@ function add_toolbar_items($admin_bar) {
         'title'  => 'All Posts',
         'href'   => '/wp-admin/edit.php'
     ));
-	if (function_exists('get_field')) {
-	    $admin_bar->add_menu( array(
-	        'id'     => 'open-website',
-	        'title'  => 'Open Website',
-	        'href'   => get_field('url', $post->ID),
-			'meta'  => array(
-				'target' => '_blank'
-			)
-	    ));
-	}
 	$admin_bar->remove_node('wp-logo');
 	$admin_bar->remove_node('customize');
 	$admin_bar->remove_node('site-name');
