@@ -26,15 +26,6 @@ function my_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'my_scripts' );
 
-
-function gatekeeper() {
-	if ( !is_user_logged_in() && $_SERVER['SCRIPT_NAME'] != '/wp-login.php') {
-		wp_redirect(wp_login_url());
-		die();
-	}
-}
-add_action('init', 'gatekeeper');
-
 function wp_canonical_hack_init() {
     remove_action( 'admin_head', 'wp_admin_canonical_url' );
 }
