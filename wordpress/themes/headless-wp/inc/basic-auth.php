@@ -54,3 +54,11 @@ function json_basic_auth_error( $error ) {
     return $result;
 }
 // add_filter( 'rest_authentication_errors', 'json_basic_auth_error' );
+
+function gatekeeper() {
+	if ( !is_user_logged_in() && $_SERVER['SCRIPT_NAME'] != '/wp-login.php') {
+		wp_redirect(wp_login_url());
+		die();
+	}
+}
+// add_action('init', 'gatekeeper');
