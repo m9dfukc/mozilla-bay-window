@@ -19,13 +19,15 @@ function rest_get_messages(WP_REST_Request $request) {
 		setup_postdata($post);
 		$categories = get_the_category($post->ID);
 		$terms = array_map(function ($category) {
-			// $string .= $category->slug . ' ';
 			return $category->slug;
 		}, $categories);
+		$message = get_field('message', $post->ID);
+		$message = str_replace(array("\r\n"), ' ', $message);
+		$message = preg_replace('!\s+!', ' ', $message);
 		$row = array(
 			'id' => $post->ID,
 			'title' => $post->post_title,
-			'message' => strtoupper(get_field('message', $post->ID)),
+			'message' => $message,
 			'periods' => $terms
 		);
 		$output[] = $row;
