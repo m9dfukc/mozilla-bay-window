@@ -21,12 +21,11 @@ get_header(); ?>
     else if (value.length > 15) length += 3
     else if (value.length > 20) length += 4
   });
-	console.log(length);
   if (length > 5) {
 		setTimeout(function() {
 			jQuery(".Header nav a").hide();
 			jQuery(".Header nav a.scroller").show();
-		}, 800)
+		}, 800);
 	}
 </script>
 
