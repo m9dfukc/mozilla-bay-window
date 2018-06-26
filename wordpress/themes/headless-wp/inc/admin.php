@@ -33,7 +33,7 @@ function my_admin_style() {
 	    <style type="text/css">
 			@font-face {
 			  font-family: BickertonDisplay;
-			  src: url("<?php echo get_template_directory_uri(); ?>/assets/180502-BickertonDisplay-Regular.otf") format("opentype");
+			  src: url("<?php echo get_template_directory_uri(); ?>/application/assets/font.otf") format("opentype");
 			}
 
 			#category-1 { display: none!important; }
@@ -72,16 +72,6 @@ function add_toolbar_items($admin_bar) {
 	$admin_bar->remove_node('comments');
 	$admin_bar->remove_node('search');
 }
-
-function my_acf_enqueue_scripts() {
-	wp_register_script( 'acfjs', get_template_directory_uri() . '/assets/admin.js', array( 'jquery', 'alphanum') );
-	wp_localize_script( 'acfjs' , 'apiSettings', array(
-		'root' => esc_url_raw( rest_url() ),
-		'nonce' => wp_create_nonce( 'wp_rest' )
-	) );
-	wp_enqueue_script( 'acfjs' );
-}
-add_action('acf/input/admin_enqueue_scripts', 'my_acf_enqueue_scripts');
 
 
 function set_default_categories($post_id) {

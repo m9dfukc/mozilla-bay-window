@@ -17,7 +17,7 @@ function my_scripts() {
 	// Stylesheet
 	wp_enqueue_style( 'styles', get_stylesheet_uri() );
 	// Our Js
-	wp_register_script( 'scripts', get_template_directory_uri() . '/assets/scripts.js', array( 'jquery' ) );
+	wp_register_script( 'scripts', get_template_directory_uri() . '/application/static/js/main.ec5740de.js', array('jquery'), false, true);
 	wp_localize_script( 'scripts' , 'apiSettings', array(
 		'root' => esc_url_raw( rest_url() ),
 		'nonce' => wp_create_nonce( 'wp_rest' )

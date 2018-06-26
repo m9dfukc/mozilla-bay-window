@@ -4,41 +4,35 @@
  */
 get_header(); ?>
 
+<script type="text/javascript">
+	<?php
+	while ( have_posts() ) : the_post();
+	$message = get_field('message');
+	$message = str_replace(array("\r\n"), ' ', $message);
+	echo "window.message='$message';\n";
+	endwhile;
+	?>
+	var lines = window.message.split(' ') || [];
+  var length = lines.length;
+  lines.forEach((value) => {
+    if (value.length > 5) length += 1
+    else if (value.length > 10) length += 2
+    else if (value.length > 15) length += 3
+    else if (value.length > 20) length += 4
+  });
+	console.log(length);
+  if (length > 5) {
+		setTimeout(function() {
+			jQuery(".Header nav a").hide();
+			jQuery(".Header nav a.scroller").show();
+		}, 800)
+	}
+</script>
+
+
 <div class="wrap">
 	<div id="primary" class="content-area">
-		<div class="inner">
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
-			echo nl2br(get_field('message'));
-			endwhile; // End of the loop.
-			?>
-		</div>
-	</div><!-- #primary -->
-</div><!-- .wrap -->
-<script type="text/javascript">
-var $ = jQuery;
-
-function animate() {
-	var displayHeight = $("#primary").height();
-	var totalHeight = $(".inner").height();
-	var lineHeight = 105;
-	if (totalHeight > displayHeight) {
-		var diff = totalHeight - displayHeight;
-		var steps = Math.ceil(diff / lineHeight);
-		for(let i=0; i <= steps; i++) {
-			var time = i == 0 ? 850 : i * 100 + 850;
-			$(".inner")
-				.delay(time)
-				.queue(function (next) {
-					var position = -1 * i * lineHeight;
-	    		$(this).css('top', position);
-	    		next();
-	  		});
-		}
-		setTimeout( animate, steps * 200 + 6000);
-	}
-}
-animate();
-</script>
+		<div id="root"></div>
+	</div>
+</div>
 <?php get_footer();
