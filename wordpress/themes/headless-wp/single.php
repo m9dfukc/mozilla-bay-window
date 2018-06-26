@@ -9,6 +9,7 @@ get_header(); ?>
 	while ( have_posts() ) : the_post();
 	$message = get_field('message');
 	$message = str_replace(array("\r\n"), ' ', $message);
+	$message = preg_replace('!\s+!', ' ', $message);
 	echo "window.message='$message';\n";
 	endwhile;
 	?>
